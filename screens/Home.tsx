@@ -1,21 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Center } from 'native-base';
+import { Text } from 'react-native';
 
 export default function Home({ navigation }) {
   return (
-    <View style={styles.container}>
+    <Center flex={1}>
       <Text>Open up App.tsx to start working on your app!</Text>
-      <Button title="hello" onPress={() => navigation.navigate('AddLocation')} />
-      <StatusBar style="auto" />
-    </View>
+      <Button onPress={() => navigation.navigate('AddLocation')}>Click Me</Button>
+    </Center>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
