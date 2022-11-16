@@ -1,0 +1,8 @@
+{
+  "common": {
+    "addLocation": "Standort hinzufügen",
+    "enterCity": "Stadt eingeben",
+    "cityNotFound": "Stadt nicht gefunden",
+    "selectCurrentCity": "Aktuelle Stadt auswählen"
+  }
+}

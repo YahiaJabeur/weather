@@ -1,0 +1,8 @@
+{
+  "common": {
+    "addLocation": "Add location",
+    "enterCity": "Enter city",
+    "cityNotFound": "City no found",
+    "selectCurrentCity": "Select current city"
+  }
+}
