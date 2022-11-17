@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
 import { useToast, Box, Button, Center, Icon, Input } from 'native-base';
 import { useTranslation } from 'react-i18next';
@@ -18,13 +19,12 @@ export default function AddLocation({ navigation }) {
 
     if (permission.status !== 'granted') {
       toast.show({
-        description: 'Permission to access location was denied',
+        description: t('permissionDenied'),
       });
       return;
     }
 
     const location = await Location.getCurrentPositionAsync();
-    console.log('location', location);
     const { latitude, longitude } = location.coords;
     geCurrentWeather(latitude, longitude);
   };

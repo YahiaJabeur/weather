@@ -1,27 +1,25 @@
-// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-// https://api.openweathermap.org/geo/1.0/direct?q=hammamet&limit=5&appid=20a4dc43edd175894cc452504e863727
-
 import useAxios from 'axios-hooks';
 
 import { GEOCODING_PATH } from '../libs/config';
+import { City } from '../models/City';
 
 type HookType = {
-  cities: string[];
-  loadingCities: boolean;
-  errorCities?: string;
+  loading: boolean;
+  getCities: (city: string) => void;
+  data?: City[];
 };
 
-export const useGeocoding = () => {
-  const [{ data: citiesData, loading: loadingCities }, executeGeocoding] = useAxios(
+export const useGeocoding = (): HookType => {
+  const [{ data, loading }, executeGeocoding] = useAxios<City[]>(
     { url: GEOCODING_PATH },
     { manual: true }
   );
 
   const getCities = (city: string) => {
-    console.log('city', city);
     executeGeocoding({
       params: { q: city, limit: 10 },
     });
   };
-  return { citiesData, loadingCities, getCities };
+
+  return { data, loading, getCities };
 };

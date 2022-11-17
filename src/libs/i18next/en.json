@@ -3,6 +3,7 @@
     "addLocation": "Add location",
     "enterCity": "Enter city",
     "cityNotFound": "City no found",
-    "selectCurrentCity": "Select current city"
+    "selectCurrentCity": "Select current city",
+    "permissionDenied": "Permission to access location was denied"
   }
 }
