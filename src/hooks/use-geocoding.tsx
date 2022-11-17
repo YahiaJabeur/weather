@@ -13,12 +13,7 @@ type HookType = {
 
 export const useGeocoding = () => {
   const [{ data: citiesData, loading: loadingCities }, executeGeocoding] = useAxios(
-    {
-      url: GEOCODING_PATH,
-      params: {
-        limit: 5,
-      },
-    },
+    { url: GEOCODING_PATH },
     { manual: true }
   );
 
