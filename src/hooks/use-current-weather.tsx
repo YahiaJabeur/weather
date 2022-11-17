@@ -20,5 +20,6 @@ export const useCurrentWeather = (): HookType => {
       params: { lat, lon, units: 'metric' },
     });
   };
+
   return { data, loading, geCurrentWeather };
 };
