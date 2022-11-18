@@ -19,14 +19,15 @@ export const useGetCurrentPosition = (): HookType => {
   const [loading, setLoading] = useState(false);
 
   const getCurrentPosition = async () => {
+    setLoading(true);
     const { status } = await Location.requestForegroundPermissionsAsync();
 
     if (status !== 'granted') {
+      setLoading(false);
       toast.show({ description: t('permissionDenied') });
       return;
     }
 
-    setLoading(true);
     const location = await Location.getCurrentPositionAsync();
 
     const { latitude: lat, longitude: lon } = location.coords;
