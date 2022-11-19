@@ -10114,6 +10114,11 @@ react-native-svg@12.1.1:
     css-select "^2.1.0"
     css-tree "^1.0.0-alpha.39"
 
+react-native-web-refresh-control@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-web-refresh-control/-/react-native-web-refresh-control-1.1.1.tgz#41e72b38daa3ae7c6ac44fe37b749975775f7a8c"
+  integrity sha512-vHCB4SEVJMrZgVo43dR+h8sg71AaybaPaIqyfzgmY9ejjRdrhbGHncPs2yAhjEzXC+OUt1cSmIpjsltLBYj9KA==
+
 react-native-web@^0.18.10:
   version "0.18.10"
   resolved "https://registry.npmjs.org/react-native-web/-/react-native-web-0.18.10.tgz"

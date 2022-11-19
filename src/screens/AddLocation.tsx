@@ -26,8 +26,7 @@ export default function AddLocation({ navigation }) {
   };
 
   const selectCity = async (item: City) => {
-    const city: City = { lat: item.lat, lon: item.lon };
-    await storeData(STORAGE_KEYS.SELECTED_CITY_KEY, JSON.stringify(city));
+    await storeData(STORAGE_KEYS.SELECTED_CITY_KEY, JSON.stringify(item));
     navigation.navigate('Home');
   };
 
