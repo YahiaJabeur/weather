@@ -1,3 +1,4 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Button, Center, Heading, Image, ScrollView, Text } from 'native-base';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,8 +9,11 @@ import { LoaderOverlay } from '../components/LoaderOverlay';
 import { useCurrentWeather } from '../hooks/use-current-weather';
 import { getStoredData, STORAGE_KEYS } from '../libs/localStorage';
 import { City } from '../models/City';
+import { RootStackParamList } from '../navigator/types';
 
-export default function Home({ navigation }) {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+export default function Home({ navigation }: Props) {
   const { t } = useTranslation();
   const { data, loading, geCurrentWeather } = useCurrentWeather();
 

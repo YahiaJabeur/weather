@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Box, Button, Center, FlatList, Icon } from 'native-base';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,8 +11,11 @@ import { useGeocoding } from '../hooks/use-geocoding';
 import { useGetCurrentPosition } from '../hooks/use-get-current-position';
 import { STORAGE_KEYS, storeData } from '../libs/localStorage';
 import { City } from '../models/City';
+import { RootStackParamList } from '../navigator/types';
 
-export default function AddLocation({ navigation }) {
+type Props = NativeStackScreenProps<RootStackParamList, 'AddLocation'>;
+
+export default function AddLocation({ navigation }: Props) {
   const { t } = useTranslation();
   const { data: citiesData, loading: loadingCity, getCities } = useGeocoding();
   const { loading: loadingPosition, getCurrentPosition } = useGetCurrentPosition();
