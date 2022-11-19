@@ -12,3 +12,7 @@ export const storeData = async (key: STORAGE_KEYS, value: string) => {
 export const getStoredData = async (key: STORAGE_KEYS) => {
   return await AsyncStorage.getItem(key);
 };
+
+export const clearStorage = async () => {
+  return await AsyncStorage.clear();
+};

@@ -9,6 +9,7 @@ export interface Weather {
     temp_min: number;
   };
   sys: {
+    country: string;
     sunrise: number;
     sunset: number;
   };
@@ -18,4 +19,14 @@ export interface Weather {
     speed: number;
   };
   weather: { icon: string }[];
+}
+
+export interface FormattedWeather {
+  name: string;
+  country: string;
+  temp: number;
+  feelsLike: number;
+  tempMax: number;
+  tempMin: number;
+  icon: string;
 }

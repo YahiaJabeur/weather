@@ -1,10 +1,12 @@
 {
   "common": {
     "addLocation": "Add location",
+    "changeLocation": "Change location",
     "enterCity": "Enter city",
     "cityNotFound": "City no found",
     "selectCurrentCity": "Select current city",
     "permissionDenied": "Permission to access location was denied",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "feelsLike": "Feels like"
   }
 }
