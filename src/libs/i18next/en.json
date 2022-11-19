@@ -4,6 +4,7 @@
     "enterCity": "Enter city",
     "cityNotFound": "City no found",
     "selectCurrentCity": "Select current city",
-    "permissionDenied": "Permission to access location was denied"
+    "permissionDenied": "Permission to access location was denied",
+    "loading": "Loading..."
   }
 }
