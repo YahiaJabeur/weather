@@ -1,14 +1,15 @@
-import { Entypo } from '@expo/vector-icons';
+import Entypo from '@expo/vector-icons/Entypo';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Button, Center, Heading, Icon, Image, ScrollView, Text } from 'native-base';
+import { Button, Center, Heading, Icon, Image, ScrollView, Text, useToast } from 'native-base';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 // @ts-ignore
 import { RefreshControl } from 'react-native-web-refresh-control';
 
+import { DevButton } from '../components/DevButton';
 import { LoaderOverlay } from '../components/LoaderOverlay';
 import { useCurrentWeather } from '../hooks/use-current-weather';
-import { clearStorage, getStoredData, STORAGE_KEYS } from '../libs/localStorage';
+import { getStoredData, STORAGE_KEYS } from '../libs/localStorage';
 import { City } from '../models/City';
 import { RootStackParamList } from '../navigator/types';
 
@@ -16,7 +17,8 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 export default function Home({ navigation }: Props) {
   const { t } = useTranslation();
-  const { data, loading, geCurrentWeather } = useCurrentWeather();
+  const { data, loading, error, geCurrentWeather } = useCurrentWeather();
+  const toast = useToast();
 
   const getWeather = async () => {
     const storedCity = await getStoredData(STORAGE_KEYS.SELECTED_CITY_KEY);
@@ -33,7 +35,9 @@ export default function Home({ navigation }: Props) {
     return unsubscribe;
   }, [navigation]);
 
-  console.log('weather data', data);
+  useEffect(() => {
+    if (error) toast.show({ description: error });
+  }, [error]);
 
   if (loading) {
     return <LoaderOverlay />;
@@ -43,15 +47,7 @@ export default function Home({ navigation }: Props) {
     <ScrollView
       flex={1}
       centerContent
-      refreshControl={
-        <RefreshControl
-          titleColor="red"
-          tintColor="red"
-          title="Hello"
-          refreshing={loading}
-          onRefresh={getWeather}
-        />
-      }>
+      refreshControl={<RefreshControl refreshing={loading} onRefresh={getWeather} />}>
       <Center flex={1} bg="white">
         {data && (
           <>
@@ -59,9 +55,9 @@ export default function Home({ navigation }: Props) {
             <Heading>{`${data.name}, ${data.country}`}</Heading>
             <Text fontSize="6xl">{`${data.temp} °C`}</Text>
             <Text fontSize="3xl" mb={30}>
-              <Icon as={Entypo} name="arrow-up" size="m" />
-              {`${data.tempMin}° / ${data.tempMax}°`}
               <Icon as={Entypo} name="arrow-down" size="m" />
+              {`${data.tempMin}° / ${data.tempMax}°`}
+              <Icon as={Entypo} name="arrow-up" size="m" />
             </Text>
             <Text mb={30} fontSize="3xl">{`${t('feelsLike')} ${data.feelsLike} °C`}</Text>
           </>
@@ -70,7 +66,7 @@ export default function Home({ navigation }: Props) {
           {t(data ? 'changeLocation' : 'addLocation')}
         </Button>
       </Center>
-      <Button onPress={clearStorage}>Dev button - Clear storage</Button>
+      <DevButton />
     </ScrollView>
   );
 }

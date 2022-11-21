@@ -13,13 +13,9 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-          <Stack.Screen
-            name="AddLocation"
-            component={AddLocation}
-            options={{ headerShown: false }}
-          />
+        <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="AddLocation" component={AddLocation} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

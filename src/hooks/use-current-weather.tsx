@@ -3,14 +3,16 @@ import { useMemo } from 'react';
 
 import { CURRENT_WEATHER_PATH } from '../libs/config';
 import { Weather, FormattedWeather } from '../models/Weather';
+
 type HookType = {
   loading: boolean;
+  error?: string;
   geCurrentWeather: (lat: number, lon: number) => void;
   data?: FormattedWeather;
 };
 
 export const useCurrentWeather = (): HookType => {
-  const [{ data, loading }, execute] = useAxios<Weather>(
+  const [{ data, error, loading }, execute] = useAxios<Weather>(
     { url: CURRENT_WEATHER_PATH },
     { manual: true }
   );
@@ -36,5 +38,5 @@ export const useCurrentWeather = (): HookType => {
     return undefined;
   }, [data]);
 
-  return { data: weatherData, loading, geCurrentWeather };
+  return { data: weatherData, loading, error: error?.message, geCurrentWeather };
 };

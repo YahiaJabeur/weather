@@ -5,12 +5,13 @@ import { City } from '../models/City';
 
 type HookType = {
   loading: boolean;
+  error?: string;
   getCities: (city: string) => void;
   data?: City[];
 };
 
 export const useGeocoding = (): HookType => {
-  const [{ data, loading }, executeGeocoding] = useAxios<City[]>(
+  const [{ data, error, loading }, executeGeocoding] = useAxios<City[]>(
     { url: GEOCODING_PATH },
     { manual: true }
   );
@@ -21,5 +22,5 @@ export const useGeocoding = (): HookType => {
     });
   };
 
-  return { data, loading, getCities };
+  return { data, loading, error: error?.message, getCities };
 };

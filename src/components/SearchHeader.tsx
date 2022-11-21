@@ -1,6 +1,6 @@
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { HStack, Icon, Input } from 'native-base';
-import React from 'react';
 
 interface Props {
   placeholder: string;
@@ -20,6 +20,7 @@ export const SearchHeader = ({ placeholder, onSubmit, onBackPress }: Props) => {
         onPress={onBackPress}
       />
       <Input
+        testID="search_input"
         placeholder={placeholder as string}
         w="90%"
         borderRadius="4"

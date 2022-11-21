@@ -1,7 +1,7 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Box, Button, Center, FlatList, Icon } from 'native-base';
-import React from 'react';
+import { Box, Button, Center, FlatList, Icon, useToast } from 'native-base';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CityItem } from '../components/CityItem';
@@ -17,8 +17,9 @@ type Props = NativeStackScreenProps<RootStackParamList, 'AddLocation'>;
 
 export default function AddLocation({ navigation }: Props) {
   const { t } = useTranslation();
-  const { data: citiesData, loading: loadingCity, getCities } = useGeocoding();
+  const { data: citiesData, loading: loadingCity, error, getCities } = useGeocoding();
   const { loading: loadingPosition, getCurrentPosition } = useGetCurrentPosition();
+  const toast = useToast();
 
   const selectCurrentCity = async () => {
     const position = await getCurrentPosition();
@@ -33,6 +34,10 @@ export default function AddLocation({ navigation }: Props) {
     await storeData(STORAGE_KEYS.SELECTED_CITY_KEY, JSON.stringify(item));
     navigation.navigate('Home');
   };
+
+  useEffect(() => {
+    if (error) toast.show({ description: error });
+  }, [error]);
 
   const loading = loadingCity || loadingPosition;
 
